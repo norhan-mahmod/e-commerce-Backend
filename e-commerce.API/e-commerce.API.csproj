@@ -16,11 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\e-commerce.Service\e-commerce.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\e-commerce.Service\e-commerce.Service.csproj" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>
