@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\ProductsDtos\" />
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>

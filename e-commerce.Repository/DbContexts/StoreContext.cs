@@ -24,5 +24,21 @@ namespace e_commerce.Repository.DbContexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entries = ChangeTracker.Entries<SharedEntity>();
+            foreach(var entry in entries)
+            {
+                if(entry.State == EntityState.Added)
+                    entry.Entity.CreatedAt = DateTime.UtcNow;
+
+                if(entry.State == EntityState.Modified)
+                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                // CreatedBy && UpdatedBy Should be alse set but when Identity Done to take UserId from Claims
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
 }

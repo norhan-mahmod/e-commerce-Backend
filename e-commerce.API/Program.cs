@@ -1,12 +1,15 @@
 
+using System.Threading.Tasks;
+using e_commerce.API.Extensions;
 using e_commerce.Repository.DbContexts;
+using e_commerce.Repository.Seeding;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +27,17 @@ namespace e_commerce.API
             });
             #endregion
 
+            builder.Services.AddApplicationServices();
+
             var app = builder.Build();
+
+            #region Seeding
+            var scop = app.Services.CreateScope();
+            var services = scop.ServiceProvider;
+            var dbcontext = services.GetRequiredService<StoreContext>();
+            await dbcontext.Database.MigrateAsync();
+            await StoreContextSeeding.SeedDataAsync(dbcontext);
+            #endregion
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
