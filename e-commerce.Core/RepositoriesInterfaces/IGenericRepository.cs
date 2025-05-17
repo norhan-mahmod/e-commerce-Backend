@@ -11,6 +11,7 @@ namespace e_commerce.Core.RepositoriesInterfaces
     public interface IGenericRepository<T> where T : SharedEntity
     {
         Task<List<T>> GetAllAsync();
+        Task<int> GetCountAsync();
         Task<T> GetByIdAsync(int id);
         Task Add(T entity);
         void Update(T entity);

@@ -1,4 +1,4 @@
-﻿namespace e_commerce.API.Dtos
+﻿namespace e_commerce.Core.Dtos
 {
     public class MetaDataDto
     {

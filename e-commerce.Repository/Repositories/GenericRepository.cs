@@ -28,6 +28,9 @@ namespace e_commerce.Repository.Repositories
         public async Task<List<T>> GetAllAsync()
             => await context.Set<T>().ToListAsync();
 
+        public async Task<int> GetCountAsync()
+            => await context.Set<T>().CountAsync();
+
         public async Task<T> GetByIdAsync(int id)
             => await context.Set<T>().FindAsync(id);
 
@@ -39,5 +42,6 @@ namespace e_commerce.Repository.Repositories
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
             => SpecificationEvaluator<T>.GetQuery(context.Set<T>(), spec);
+
     }
 }

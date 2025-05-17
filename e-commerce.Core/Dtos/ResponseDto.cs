@@ -1,9 +1,10 @@
-﻿namespace e_commerce.API.Dtos
+﻿namespace e_commerce.Core.Dtos
 {
     public class ResponseDto<T>
     {
-        public int Result { get; set; }
+        public int ResultCount { get; set; }
         public MetaDataDto MetaData { get; set; }
         public T Data { get; set; }
+        public string Message { get; set; }
     }
 }
